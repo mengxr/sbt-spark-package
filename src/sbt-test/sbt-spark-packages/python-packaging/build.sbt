@@ -48,6 +48,7 @@ def jarContentChecks(dir: File, python: Boolean): Unit = {
     mustExist(jarDir / "simple" / "__init__.py", python)
     mustExist(jarDir / "simple" / "lib" / "__init__.py", python)
     mustExist(jarDir / "requirements.txt", python)
+    assert(!(jarDir / "bin" / "test.py").exists(), "python/bin/* should be excluded.")
     if (python) {
       mustContain(jarDir / "requirements.txt", Seq("databricks/spark-csv==0.1"))
     }
